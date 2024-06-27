@@ -38,4 +38,22 @@ public class Sort {
         }
         return nums;
     }
+
+    public static int[] insertionSort(int[] nums) {
+        int key;
+        int j;
+        for(int i = 1; i < nums.length; i++) {
+            int temp = nums[i];
+            j = i - 1;
+            while(j >= 0 && nums[j] > temp){
+                nums[j + 1] = nums[j];
+                j--;
+            }
+            nums[j + 1] = temp;
+        }
+        return nums;
+    }
+    public static int[] quickSort(int[] nums){
+        return nums;
+    }
 }
