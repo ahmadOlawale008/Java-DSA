@@ -11,10 +11,6 @@ public class Sort {
                     nums[j] = nums[j + 1];
                     nums[j + 1] = temp;
                 }
-                System.out.println();
-                for (int num : nums) {
-                    System.out.print(num + " ");
-                }
             }
 
         }
@@ -40,12 +36,11 @@ public class Sort {
     }
 
     public static int[] insertionSort(int[] nums) {
-        int key;
         int j;
-        for(int i = 1; i < nums.length; i++) {
+        for (int i = 1; i < nums.length; i++) {
             int temp = nums[i];
             j = i - 1;
-            while(j >= 0 && nums[j] > temp){
+            while (j >= 0 && nums[j] > temp) {
                 nums[j + 1] = nums[j];
                 j--;
             }
@@ -53,7 +48,30 @@ public class Sort {
         }
         return nums;
     }
-    public static int[] quickSort(int[] nums){
+
+    public static int[] quickSort(int[] nums, int low, int high) {
+        if (low < high) {
+            int pi = partition(nums, low, high);
+            quickSort(nums, low, pi - 1);
+            quickSort(nums, pi + 1, high);
+        }
         return nums;
+    }
+
+    private static int partition(int[] nums, int low, int high) {
+        int pivot = nums[high];
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (nums[j] < pivot) {
+                i++;
+                int temp = nums[j];
+                nums[i] = nums[j];
+                nums[j] = temp;
+            }
+        }
+        int temp = nums[i + 1];
+        nums[i + 1] = nums[high];
+        nums[high] = temp;
+        return i + 1;
     }
 }
